@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matheus Alves — automação, coleta de dados e segurança de código</title>
+<meta name="description" content="Trabalho sozinho com automação de processos, coleta de dados, chatbot de atendimento e revisão de segurança de código. Escopo e preço fechados por escrito antes de começar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f4ee;
+  --paper-2:#efeade;
+  --ink:#17160f;
+  --ink-soft:#4a4740;
+  --muted:#6f6a5c;
+  --rule:#dcd5c6;
+  --rule-strong:#bdb4a1;
+  --accent:#b8402a;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.62 var(--sans);
+  font-feature-settings:"kern" 1;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.sheet{max-width:1080px;margin:0 auto;padding:0 28px}
+
+/* ---------- topo ---------- */
+header.top{
+  border-bottom:1px solid var(--rule);
+  padding:20px 0 18px;
+  display:flex;flex-wrap:wrap;gap:14px 26px;align-items:baseline;justify-content:space-between;
+}
+.who{display:flex;flex-direction:column;gap:2px}
+.who strong{font:600 1.02rem/1.3 var(--sans);letter-spacing:-.01em}
+.who span{font:400 .8rem/1.3 var(--mono);color:var(--muted)}
+nav.top-nav{display:flex;gap:18px;font:400 .82rem/1.3 var(--mono);color:var(--ink-soft)}
+nav.top-nav a{text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
+nav.top-nav a:hover{border-bottom-color:var(--rule-strong)}
+
+/* ---------- composição principal ---------- */
+main{display:block;padding:64px 0 0}
+.lede{font:400 1.5rem/1.5 var(--sans);color:var(--ink-soft);max-width:56ch;margin:0}
+.cols{display:grid;grid-template-columns:minmax(0,1fr);gap:36px}
+@media (min-width:900px){
+  .cols{grid-template-columns:230px minmax(0,1fr);gap:64px;align-items:start}
+  .rail{position:sticky;top:28px}
+}
+
+h1{
+  font:600 clamp(2.2rem,5.4vw,3.6rem)/1.06 var(--serif);
+  letter-spacing:-.022em;margin:0 0 22px;max-width:24ch;text-wrap:balance;
+}
+h1 em{font-style:normal;color:var(--accent)}
+.rail .kick{font:400 .78rem/1.4 var(--mono);color:var(--muted);margin:0 0 10px}
+.rail p{font:.9rem/1.6 var(--sans);color:var(--muted);margin:0 0 14px}
+.rail .facts{list-style:none;margin:0;padding:0;font:.82rem/1.7 var(--mono);color:var(--ink-soft)}
+.rail .facts li{border-top:1px solid var(--rule);padding:7px 0}
+.rail .facts b{font-weight:400;color:var(--ink)}
+
+h2{
+  font:400 .78rem/1.4 var(--mono);color:var(--muted);
+  text-transform:lowercase;letter-spacing:.02em;
+  margin:0 0 22px;padding-bottom:8px;border-bottom:1px solid var(--rule-strong);
+}
+section{margin:0 0 76px;scroll-margin-top:24px}
+section > p{max-width:62ch;color:var(--ink-soft);margin:0 0 16px}
+
+/* ---------- tabela de serviços ---------- */
+.svc{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.svc > li{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;
+  padding:20px 0;border-bottom:1px solid var(--rule);
+}
+.svc h3{font:600 1.12rem/1.35 var(--serif);margin:0;letter-spacing:-.01em}
+.svc .price{font:.86rem/1.5 var(--mono);color:var(--accent);white-space:nowrap;text-align:right}
+.svc p{grid-column:1/-1;margin:0;color:var(--muted);font-size:.94rem;max-width:66ch}
+.svc .note{font:.78rem/1.5 var(--mono);color:var(--muted)}
+
+/* ---------- como funciona ---------- */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 20px 44px;counter-increment:s}
+.steps li::before{
+  content:counter(s) ".";position:absolute;left:0;top:0;
+  font:.82rem/1.9 var(--mono);color:var(--accent);
+}
+.steps b{display:block;font:600 .98rem/1.4 var(--sans);margin-bottom:3px}
+.steps span{color:var(--muted);font-size:.94rem}
+
+/* ---------- rodou ---------- */
+.ledger{list-style:none;margin:0;padding:0;font-size:.94rem}
+.ledger li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;padding:11px 0;border-bottom:1px solid var(--rule)}
+.ledger time{font:.78rem/1.7 var(--mono);color:var(--muted)}
+.ledger span{color:var(--ink-soft)}
+
+/* ---------- contato ---------- */
+.contato p{max-width:58ch}
+.big-mail{
+  display:inline-block;font:600 clamp(1.15rem,3.4vw,1.7rem)/1.3 var(--serif);
+  color:var(--ink);text-decoration:none;border-bottom:2px solid var(--accent);
+  padding-bottom:3px;margin:6px 0 22px;word-break:break-all;
+}
+.big-mail:hover{color:var(--accent)}
+.tambem{font:.84rem/1.7 var(--mono);color:var(--muted);margin:0}
+.tambem a{color:var(--ink-soft)}
+
+footer{
+  border-top:1px solid var(--rule-strong);margin-top:96px;padding:22px 0 56px;
+  font:.8rem/1.7 var(--mono);color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:6px 28px;justify-content:space-between;
+}
+@media print{body{background:#fff}.rail{position:static}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header class="top">
+  <div class="who">
+    <strong>Matheus Alves</strong>
+    <span>automação · dados · segurança de código</span>
+  </div>
+  <nav class="top-nav">
+    <a href="#servicos">serviços</a>
+    <a href="#como">como funciona</a>
+    <a href="#contato">contato</a>
+  </nav>
+</header>
+
+<main>
+  <div class="cols">
+
+    <aside class="rail">
+      <p class="kick">sobre este trabalho</p>
+      <p>Trabalho sozinho, remoto, a partir do Rio de Janeiro. Cada projeto começa com escopo e preço por escrito — se algo mudar no meio do caminho, você sabe quanto custa antes de eu seguir.</p>
+      <ul class="facts">
+        <li><b>1 pessoa</b> — sem terceirizar</li>
+        <li><b>1 dia útil</b> para o orçamento</li>
+        <li><b>nota fiscal</b> (MEI) e PIX</li>
+      </ul>
+    </aside>
+
+    <div>
+      <h1>Automação, coleta de dados e IA aplicada — <em>entregue funcionando</em>, não em apresentação.</h1>
+      <p class="lede">Você descreve o problema e o prazo. Eu devolvo o escopo fechado, o preço e uma parte do trabalho rodando antes do pagamento final.</p>
+    </div>
+
+  </div>
+
+  <section id="servicos" style="margin-top:76px">
+    <h2>serviços e faixas de preço</h2>
+    <ul class="svc">
+      <li>
+        <h3>Monitoramento de WordPress</h3>
+        <div class="price">R$ 300 – 900 / mês</div>
+        <p>Uptime, versão do núcleo e dos plugins, certificado, backup e sinais de comprometimento. Só leitura — o robô não escreve nada no site.</p>
+        <p class="note">montagem R$ 250 · relatório mensal em HTML</p>
+      </li>
+      <li>
+        <h3>Coleta de dados e sites</h3>
+        <div class="price">R$ 500 – 1.200</div>
+        <p>Preço de concorrente, catálogo, cotações, anúncios e listas públicas. Entrego em CSV ou planilha, com a URL de origem de cada linha.</p>
+        <p class="note">coleta única · robô agendado a partir de R$ 2.500</p>
+      </li>
+      <li>
+        <h3>Chatbot de WhatsApp</h3>
+        <div class="price">R$ 1.500 – 5.000</div>
+        <p>Responde dúvida de cliente com o contexto do seu negócio — horário, entrega, pagamento, encomenda — e passa para um atendente humano quando não sabe responder.</p>
+        <p class="note">a conta Meta Business fica no seu nome, não no meu</p>
+      </li>
+      <li>
+        <h3>Automação de processos</h3>
+        <div class="price">R$ 800 – 4.000</div>
+        <p>Fluxos em n8n, Make ou Zapier: lead que cai no CRM, aviso quando o concorrente muda de preço, WhatsApp atendido por IA. Entrego montado e documentado.</p>
+        <p class="note">um fluxo a partir de R$ 800 · manutenção R$ 400 – 900 / mês</p>
+      </li>
+      <li>
+        <h3>Dados públicos brasileiros sob medida</h3>
+        <div class="price">R$ 600 – 2.500</div>
+        <p>Consulta e monitoramento de CNPJ (empresas recém-abertas) e de licitações do PNCP por CNAE, UF ou palavra-chave, numa API própria pronta para entrar no seu sistema.</p>
+        <p class="note">protótipo funcionando em 3 dias</p>
+      </li>
+      <li>
+        <h3>Revisão de segurança de código</h3>
+        <div class="price">a partir de R$ 1.200</div>
+        <p>Leitura focada nas classes que realmente dão prejuízo: injeção, controle de acesso quebrado, segredo exposto no front-end, upload inseguro. Relatório com o passo a passo para reproduzir cada achado.</p>
+        <p class="note">escopo por repositório</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="como">
+    <h2>como funciona</h2>
+    <ol class="steps">
+      <li>
+        <b>Diagnóstico em 24h</b>
+        <span>Você me manda o contexto e o acesso. Eu devolvo o escopo por escrito, com o preço fechado e o que não está incluído.</span>
+      </li>
+      <li>
+        <b>Uma parte rodando em 48h</b>
+        <span>Você vê o trabalho funcionando com o seu dado real antes de pagar o restante.</span>
+      </li>
+      <li>
+        <b>Entrega e ajuste</b>
+        <span>Rodamos junto no ambiente real. Quando dá erro, fica log e tem nova tentativa — não desaparece.</span>
+      </li>
+      <li>
+        <b>Manutenção, se você quiser</b>
+        <span>Mensal, só para o que precisa continuar de pé depois da entrega.</span>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>o que já rodou</h2>
+    <p>Números do meu próprio trabalho, medidos no dia em que a linha foi escrita — não são estimativa de proposta.</p>
+    <ul class="ledger">
+      <li><time>27/11</time><span>60 registros coletados de um catálogo real, em um comando</span></li>
+      <li><time>27/11</time><span>32 linhas de cotação de soja extraídas de uma tabela HTML de bolsa</span></li>
+      <li><time>27/11</time><span>20 anúncios de freela coletados, filtrados e pontuados automaticamente</span></li>
+      <li><time>26/11</time><span>3 fluxos n8n gerados e validados (nós e conexões conferidos um a um)</span></li>
+      <li><time>26/11</time><span>monitor de preço de concorrente rodando em intervalo de 6 horas</span></li>
+    </ul>
+  </section>
+
+  <section id="contato" class="contato">
+    <h2>contato</h2>
+    <p>Escreve o que você precisa resolver e para quando. Eu respondo com escopo e preço — não com orçamento em aberto esperando reunião.</p>
+    <a class="big-mail" href="mailto:alvesmatheus9@proton.me">alvesmatheus9@proton.me</a>
+    <p class="tambem">WhatsApp: <a href="https://wa.me/5521996584053">(21) 99658-4053</a> · resposta em até 1 dia útil</p>
+  </section>
+
+</main>
+
+<footer>
+  <span>Matheus Alves — automação, dados e segurança de software</span>
+  <span>escopo por escrito · parte do trabalho antes do pagamento integral</span>
+</footer>
+
+</div>
+</body>
+</html>
